@@ -10,6 +10,7 @@ public class ButtonManager : MonoBehaviour
     public float offsetX;
 
     private List<GameObject> instantiatedButtons = new List<GameObject>();
+    private List<string> labelPuzzle = new List<string>();
 
     void Start()
     {
@@ -42,5 +43,31 @@ public class ButtonManager : MonoBehaviour
 
         // Position buttons accordingly
         PositionButtons();
+    }
+
+    public void ResetLabel()
+    {
+        buttons.Clear();
+        labelPuzzle.Clear();
+
+        // Destroy instantiated buttons and clear the list
+        foreach (GameObject buttonInstance in instantiatedButtons)
+        {
+            Destroy(buttonInstance);
+        }
+        instantiatedButtons.Clear();
+    }
+
+    public void LabelButton(string label)
+    {
+        labelPuzzle.Add(label);
+    }
+
+    public void PrintLabel()
+    {
+        foreach(var label in labelPuzzle)
+        {
+            Debug.Log(label);
+        }
     }
 }
